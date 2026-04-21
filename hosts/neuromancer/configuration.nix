@@ -2,8 +2,7 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
-      ./cachix.nix
+    [
       ./hardware-configuration.nix
       ./../../modules/core
       ./disko-config.nix
