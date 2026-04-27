@@ -1,12 +1,16 @@
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-      ./../../modules/core
-      ./disko-config.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix
+    ./../../modules/core
+    ./disko-config.nix
+  ];
 
   networking.hostName = "ccpc"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -14,7 +18,10 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Enable flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -41,7 +48,6 @@
   networking.firewall.checkReversePath = false; # protonvpn
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.login.enableGnomeKeyring = true;
-
 
   # Enable bluetooth
   hardware.bluetooth.enable = true;
@@ -83,7 +89,7 @@
     enable32Bit = true;
   };
 
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
   # services.xserver.videoDrivers = ["amdgpu"];
 
   hardware.nvidia = {
@@ -91,22 +97,23 @@
     open = true;
   };
 
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.mellow = {
     isNormalUser = true;
     description = "mellow";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     shell = pkgs.zsh;
-    packages = with pkgs;
-      [
-        proton-vpn-cli
-        protonvpn-gui
-        wireguard-tools
-        openvpn
-        prismlauncher
-        vscodium
-      ];
+    packages = with pkgs; [
+      proton-vpn-cli
+      protonvpn
+      wireguard-tools
+      openvpn
+      prismlauncher
+      vscodium
+    ];
   };
 
   programs = {

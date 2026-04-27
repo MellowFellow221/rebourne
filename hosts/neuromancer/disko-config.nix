@@ -33,8 +33,8 @@
                   "@nix" = {
                     mountpoint = "/nix";
                     mountOptions = [
-                        "compress=zstd"
-                        "noatime"
+                      "compress=zstd"
+                      "noatime"
                     ];
                   };
                   "@var" = {

@@ -2,7 +2,6 @@
 
 {
   boot = {
-    # Use the latest kernal package
     kernelPackages = pkgs.linuxPackages_latest;
     loader = {
       efi.canTouchEfiVariables = true;
